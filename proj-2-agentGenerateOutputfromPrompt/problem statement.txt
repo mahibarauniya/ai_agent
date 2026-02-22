@@ -1,0 +1,23 @@
+I have one requirement. can you please make a plan for me -
+1). i have two locan end points country and currency codes per country
+2). i have one public end point from where i need to fetch latest exchange rate. 
+3). i need to build an agent on top of it which can decide where to go and fetch the data and generate output at a output path. 
+
+please suggest do i need to implement LLM or MCP or combination of LLM and MCP.Please suggest a plan whcih is best for this scenario and take generate an output from user input and input can be any medium to complex prompt 
+
+
++++++++++
+
+i already have end point created for customer and product data and one public API also. i want to create three tools one for customer , one for product and one for public API... and then need to set up MCP which will be configured with LLM 
+
+
++++++++++++++++++++++++
+dataset API 
+https://cdn.moneyconvert.net/api/latest.json
+exchange rate w.r.t USD
+
+
+Local dataset:
+List of currency codes per country
+https://dedolist.com/lists/business/country-currency-codes/csv/?utm_source=chatgpt.com
+

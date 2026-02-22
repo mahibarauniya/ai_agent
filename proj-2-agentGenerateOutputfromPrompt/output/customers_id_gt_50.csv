@@ -1,0 +1,51 @@
+customer_id,first_name,last_name,email,city,country
+51,Joshua,Stewart,joshua.stewart@example.com,Cleveland,USA
+52,Zoe,Sanchez,zoe.sanchez@example.com,Bakersfield,USA
+53,Andrew,Morris,andrew.morris@example.com,Tampa,USA
+54,Nora,Rogers,nora.rogers@example.com,Aurora,USA
+55,Brooks,Reed,brooks.reed@example.com,Honolulu,USA
+56,Addison,Cook,addison.cook@example.com,Anaheim,USA
+57,Elias,Morgan,elias.morgan@example.com,San Juan,USA
+58,Penelope,Bell,penelope.bell@example.com,St. Louis,USA
+59,Christian,Murphy,christian.murphy@example.com,Orlando,USA
+60,Layla,Bailey,layla.bailey@example.com,Newark,USA
+61,Jonathan,Rivera,jonathan.rivera@example.com,Laredo,USA
+62,Riley,Cooper,riley.cooper@example.com,Lubbock,USA
+63,Levi,Richardson,levi.richardson@example.com,Scottsdale,USA
+64,Hazel,Cox,hazel.cox@example.com,Glendale,USA
+65,Caleb,Howard,caleb.howard@example.com,Baton Rouge,USA
+66,Luna,Ward,luna.ward@example.com,Chandler,USA
+67,Gabriel,Diaz,gabriel.diaz@example.com,Lafayette,USA
+68,Elizabeth,Watson,elizabeth.watson@example.com,Madison,USA
+69,Lincoln,Brooks,lincoln.brooks@example.com,Lincoln,USA
+70,Mila,Chavez,mila.chavez@example.com,Chesapeake,USA
+71,Ezra,Wood,ezra.wood@example.com,Hialeah,USA
+72,Stella,James,stella.james@example.com,Richmond,USA
+73,Asher,Bennett,asher.bennett@example.com,Boise,USA
+74,Ellie,Gray,ellie.gray@example.com,Birmingham,USA
+75,Nathan,James,nathan.james@example.com,Spokane,USA
+76,Layla,Reyes,layla.reyes@example.com,Garland,USA
+77,Thomas,Hughes,thomas.hughes@example.com,Pune,India 
+78,Audrey,Flores,audrey.flores@example.com,Huntington,USA
+79,Hudson,Wells,hudson.wells@example.com,Rochester,USA
+80,Scarlett,Rivera,scarlett.rivera@example.com,Richmond,USA
+81,Aiden,Kim,aiden.kim@example.com,Baton Rouge,USA
+82,Lily,Peterson,lily.peterson@example.com,Augusta,USA
+83,Elena,Gray,elena.gray@example.com,Grand Rapids,USA
+84,David,Long,david.long@example.com,Hyderabad,India 
+85,Nora,Hamilton,nora.hamilton@example.com,Salt Lake City,USA
+86,Julian,Gonzales,julian.gonzales@example.com,Hartford,USA
+87,Claire,Stone,claire.stone@example.com,Killeen,USA
+88,Isaiah,Stevens,isaiah.stevens@example.com,Santa Ana,USA
+89,Samantha,Foster,samantha.foster@example.com,Peoria,USA
+90,Leo,Hart,leo.hart@example.com,Mesquite,USA
+91,Audrey,Mendoza,audrey.mendoza@example.com,Midland,USA
+92,Wyatt,Silva,wyatt.silva@example.com,Jhansi ,India 
+93,Stella,Reynolds,stella.reynolds@example.com,Carrollton,USA
+94,Grayson,Fox,grayson.fox@example.com,West Valley,USA
+95,Victoria,Kim,victoria.kim@example.com,Billings,USA
+96,Ezra,Ortiz,ezra.ortiz@example.com,Green Bay,USA
+97,Lillian,Johnston,lillian.johnston@example.com,Waco,USA
+98,Leo,Hunt,leo.hunt@example.com,Rochester,USA
+99,Ella,Hanson,ella.hanson@example.com,Lancaster,USA
+100,Jackson,Rice,jackson.rice@example.com,Beaumont,USA
