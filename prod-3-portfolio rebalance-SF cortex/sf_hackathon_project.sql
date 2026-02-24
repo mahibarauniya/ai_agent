@@ -376,3 +376,215 @@ SELECT * FROM  HACKATHON.HACKATHON_SCHEMA.client_account_master;
 SELECT * FROM  HACKATHON.HACKATHON_SCHEMA.client_position_holdings;
 SELECT * FROM  HACKATHON.HACKATHON_SCHEMA.CLIENT_PORTFOLIO_PERFORMANCE;
 SELECT * FROM  HACKATHON.HACKATHON_SCHEMA.CLIENT_RISK_METRICS;
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+PORTFOLIO ANALYTICS ENGINE- PAE
+
+CREATE TABLE IF NOT EXISTS HACKATHON.HACKATHON_SCHEMA.sector_master (
+    sector_code           VARCHAR(20)    NOT NULL,
+    sector_name           VARCHAR(100)   NOT NULL,
+    asset_class           VARCHAR(50)    NOT NULL,
+    benchmark_weight      DECIMAL(6,4),
+    avg_beta              DECIMAL(5,3),
+    avg_dividend_yield    DECIMAL(5,3),
+    disaster_sensitivity  VARCHAR(20),
+    CONSTRAINT pk_sector_master PRIMARY KEY (sector_code)
+);
+
+
+INSERT INTO HACKATHON.HACKATHON_SCHEMA.sector_master
+(sector_code, sector_name, asset_class, benchmark_weight, avg_beta, avg_dividend_yield, disaster_sensitivity)
+VALUES
+('Technology',             'Information Technology',    'Equity',       0.2950, 1.220, 0.008, 'MEDIUM'),
+('Healthcare',             'Health Care',               'Equity',       0.1280, 0.720, 0.018, 'LOW'),
+('Financials',             'Financials',                'Equity',       0.1310, 1.150, 0.021, 'HIGH'),
+('Energy',                 'Energy',                    'Equity',       0.0420, 1.050, 0.038, 'HIGH'),
+('Consumer Discretionary', 'Consumer Discretionary',    'Equity',       0.1050, 1.180, 0.009, 'MEDIUM'),
+('Consumer Staples',       'Consumer Staples',          'Equity',       0.0650, 0.580, 0.028, 'LOW'),
+('Communication Services', 'Communication Services',    'Equity',       0.0880, 1.050, 0.011, 'MEDIUM'),
+('Industrials',            'Industrials',               'Equity',       0.0850, 1.020, 0.016, 'MEDIUM'),
+('Utilities',              'Utilities',                 'Equity',       0.0240, 0.550, 0.034, 'LOW'),
+('Real Estate',            'Real Estate',               'Equity',       0.0230, 0.800, 0.032, 'MEDIUM'),
+('Materials',              'Materials',                 'Equity',       0.0250, 1.010, 0.020, 'MEDIUM'),
+('Bond Fund',              'Diversified Bond Fund',     'Fixed Income', 0.0000, 0.050, 0.040, 'LOW'),
+('Treasury',               'US Treasury Bonds',         'Fixed Income', 0.0000, 0.020, 0.038, 'LOW'),
+('Corporate Bond',         'Investment Grade Corp Bond','Fixed Income', 0.0000, 0.080, 0.045, 'LOW'),
+('High Yield Bond',        'High Yield Corporate Bond', 'Fixed Income', 0.0000, 0.300, 0.062, 'MEDIUM');
+
+
+CREATE TABLE IF NOT EXISTS HACKATHON.HACKATHON_SCHEMA.benchmark_master (
+    benchmark_id        VARCHAR(20)    NOT NULL,
+    benchmark_name      VARCHAR(200)   NOT NULL,
+    benchmark_type      VARCHAR(50),
+    asset_class_focus   VARCHAR(50),
+    provider            VARCHAR(100),
+    inception_date      DATE,
+    currency            VARCHAR(3)     DEFAULT 'USD',
+    description         TEXT,
+
+    CONSTRAINT pk_benchmark_master PRIMARY KEY (benchmark_id)
+);
+
+INSERT INTO HACKATHON.HACKATHON_SCHEMA.benchmark_master
+(benchmark_id, benchmark_name, benchmark_type, asset_class_focus, provider, inception_date, currency, description)
+VALUES
+('SPY',   'SPDR S&P 500 ETF Trust',                  'Equity Index', 'Equity',       'State Street',  '1993-01-22', 'USD', 'Tracks the S&P 500 index — 500 largest US companies by market cap. Used as benchmark for equity-heavy growth portfolios.'),
+('VBINX', 'Vanguard Balanced Index Fund',             'Balanced',     'Multi-Asset',  'Vanguard',      '1992-11-13', 'USD', '60/40 balanced fund tracking US stocks and bonds. Used as benchmark for moderate/conservative blended portfolios.'),
+('AGG',   'iShares Core U.S. Aggregate Bond ETF',    'Bond Index',   'Fixed Income', 'BlackRock',     '2003-09-26', 'USD', 'Tracks the Bloomberg US Aggregate Bond Index — investment grade US bonds. Used as benchmark for fixed income portfolios.'),
+('QQQ',   'Invesco QQQ Trust',                       'Equity Index', 'Equity',       'Invesco',       '1999-03-10', 'USD', 'Tracks the NASDAQ-100 index — 100 largest non-financial NASDAQ companies. Used for tech-heavy growth portfolio comparison.');
+
+
+-- ============================================================
+-- SECURITY_MASTER — DDL + DML
+-- Covers ALL 45 unique tickers from client_position_holdings
+-- Accounts: 5001 & 5002
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS HACKATHON.HACKATHON_SCHEMA.security_master (
+    ticker              VARCHAR(10)    NOT NULL,
+    security_name       VARCHAR(200)   NOT NULL,
+    asset_class         VARCHAR(50)    NOT NULL,     -- 'Equity' | 'Fixed Income' | 'REIT' | 'ETF' | 'Mutual Fund'
+    sector_code         VARCHAR(20),                 -- FK → sector_master.sector_code
+    industry            VARCHAR(100),                -- Sub-sector: 'Semiconductors', 'Pharma', etc.
+    exchange            VARCHAR(20),                 -- 'NYSE' | 'NASDAQ' | 'AMEX'
+    market_cap_category VARCHAR(20),                 -- 'Mega Cap' | 'Large Cap' | 'Mid Cap' | 'Small Cap'
+
+    CONSTRAINT pk_security_master PRIMARY KEY (ticker)
+);
+
+
+-- ============================================================
+-- INSERT ALL 45 SECURITIES
+-- ============================================================
+
+INSERT INTO HACKATHON.HACKATHON_SCHEMA.security_master
+(ticker, security_name, asset_class, sector_code, industry, exchange, market_cap_category)
+VALUES
+
+-- =============================================
+-- TECHNOLOGY — 5 tickers
+-- =============================================
+('AAPL',  'Apple Inc.',                                              'Equity',       'Technology',             'Consumer Electronics',            'NASDAQ', 'Mega Cap'),
+('MSFT',  'Microsoft Corporation',                                   'Equity',       'Technology',             'Software - Infrastructure',       'NASDAQ', 'Mega Cap'),
+('NVDA',  'NVIDIA Corporation',                                      'Equity',       'Technology',             'Semiconductors',                  'NASDAQ', 'Mega Cap'),
+('GOOGL', 'Alphabet Inc. Class A',                                   'Equity',       'Technology',             'Internet Content & Information',  'NASDAQ', 'Mega Cap'),
+('CRM',   'Salesforce Inc.',                                         'Equity',       'Technology',             'Software - Application',          'NYSE',   'Large Cap'),
+
+-- =============================================
+-- HEALTHCARE — 5 tickers
+-- =============================================
+('JNJ',   'Johnson & Johnson',                                      'Equity',       'Healthcare',             'Drug Manufacturers - General',    'NYSE',   'Mega Cap'),
+('PFE',   'Pfizer Inc.',                                             'Equity',       'Healthcare',             'Drug Manufacturers - General',    'NYSE',   'Large Cap'),
+('UNH',   'UnitedHealth Group Inc.',                                 'Equity',       'Healthcare',             'Healthcare Plans',                'NYSE',   'Mega Cap'),
+('ABBV',  'AbbVie Inc.',                                             'Equity',       'Healthcare',             'Drug Manufacturers - Specialty',  'NYSE',   'Large Cap'),
+('TMO',   'Thermo Fisher Scientific Inc.',                           'Equity',       'Healthcare',             'Diagnostics & Research',          'NYSE',   'Mega Cap'),
+
+-- =============================================
+-- FINANCIALS — 4 tickers
+-- =============================================
+('JPM',   'JPMorgan Chase & Co.',                                    'Equity',       'Financials',             'Banks - Diversified',             'NYSE',   'Mega Cap'),
+('GS',    'The Goldman Sachs Group Inc.',                            'Equity',       'Financials',             'Capital Markets',                 'NYSE',   'Large Cap'),
+('V',     'Visa Inc. Class A',                                       'Equity',       'Financials',             'Credit Services',                 'NYSE',   'Mega Cap'),
+('BRK.B', 'Berkshire Hathaway Inc. Class B',                         'Equity',       'Financials',             'Insurance - Diversified',         'NYSE',   'Mega Cap'),
+
+-- =============================================
+-- ENERGY — 3 tickers
+-- =============================================
+('XOM',   'Exxon Mobil Corporation',                                 'Equity',       'Energy',                 'Oil & Gas Integrated',            'NYSE',   'Mega Cap'),
+('CVX',   'Chevron Corporation',                                     'Equity',       'Energy',                 'Oil & Gas Integrated',            'NYSE',   'Mega Cap'),
+('COP',   'ConocoPhillips',                                          'Equity',       'Energy',                 'Oil & Gas E&P',                   'NYSE',   'Large Cap'),
+
+-- =============================================
+-- CONSUMER DISCRETIONARY — 3 tickers
+-- =============================================
+('AMZN',  'Amazon.com Inc.',                                         'Equity',       'Consumer Discretionary', 'Internet Retail',                 'NASDAQ', 'Mega Cap'),
+('TSLA',  'Tesla Inc.',                                              'Equity',       'Consumer Discretionary', 'Auto Manufacturers',              'NASDAQ', 'Mega Cap'),
+('HD',    'The Home Depot Inc.',                                     'Equity',       'Consumer Discretionary', 'Home Improvement Retail',         'NYSE',   'Mega Cap'),
+
+-- =============================================
+-- CONSUMER STAPLES — 3 tickers
+-- =============================================
+('PG',    'The Procter & Gamble Company',                            'Equity',       'Consumer Staples',       'Household & Personal Products',   'NYSE',   'Mega Cap'),
+('KO',    'The Coca-Cola Company',                                   'Equity',       'Consumer Staples',       'Beverages - Non-Alcoholic',       'NYSE',   'Mega Cap'),
+('PEP',   'PepsiCo Inc.',                                            'Equity',       'Consumer Staples',       'Beverages - Non-Alcoholic',       'NASDAQ', 'Mega Cap'),
+
+-- =============================================
+-- COMMUNICATION SERVICES — 3 tickers
+-- =============================================
+('META',  'Meta Platforms Inc. Class A',                             'Equity',       'Communication Services', 'Internet Content & Information',  'NASDAQ', 'Mega Cap'),
+('DIS',   'The Walt Disney Company',                                 'Equity',       'Communication Services', 'Entertainment',                   'NYSE',   'Large Cap'),
+('NFLX',  'Netflix Inc.',                                            'Equity',       'Communication Services', 'Entertainment',                   'NASDAQ', 'Mega Cap'),
+
+-- =============================================
+-- INDUSTRIALS — 4 tickers
+-- =============================================
+('CAT',   'Caterpillar Inc.',                                        'Equity',       'Industrials',            'Farm & Heavy Construction',       'NYSE',   'Large Cap'),
+('BA',    'The Boeing Company',                                      'Equity',       'Industrials',            'Aerospace & Defense',             'NYSE',   'Large Cap'),
+('UPS',   'United Parcel Service Inc. Class B',                      'Equity',       'Industrials',            'Integrated Freight & Logistics',  'NYSE',   'Large Cap'),
+('HON',   'Honeywell International Inc.',                            'Equity',       'Industrials',            'Conglomerates',                   'NASDAQ', 'Large Cap'),
+
+-- =============================================
+-- UTILITIES — 3 tickers
+-- =============================================
+('NEE',   'NextEra Energy Inc.',                                     'Equity',       'Utilities',              'Utilities - Regulated Electric',  'NYSE',   'Large Cap'),
+('DUK',   'Duke Energy Corporation',                                 'Equity',       'Utilities',              'Utilities - Regulated Electric',  'NYSE',   'Large Cap'),
+('SO',    'The Southern Company',                                    'Equity',       'Utilities',              'Utilities - Regulated Electric',  'NYSE',   'Large Cap'),
+
+-- =============================================
+-- REAL ESTATE — 4 tickers
+-- =============================================
+('AMT',   'American Tower Corporation',                              'REIT',         'Real Estate',            'REIT - Specialty',                'NYSE',   'Large Cap'),
+('PLD',   'Prologis Inc.',                                           'REIT',         'Real Estate',            'REIT - Industrial',               'NYSE',   'Large Cap'),
+('SPG',   'Simon Property Group Inc.',                               'REIT',         'Real Estate',            'REIT - Retail',                   'NYSE',   'Large Cap'),
+('O',     'Realty Income Corporation',                               'REIT',         'Real Estate',            'REIT - Retail',                   'NYSE',   'Large Cap'),
+
+-- =============================================
+-- MATERIALS — 3 tickers
+-- =============================================
+('LIN',   'Linde plc',                                               'Equity',       'Materials',              'Specialty Chemicals',             'NYSE',   'Mega Cap'),
+('APD',   'Air Products and Chemicals Inc.',                         'Equity',       'Materials',              'Specialty Chemicals',             'NYSE',   'Large Cap'),
+('FCX',   'Freeport-McMoRan Inc.',                                   'Equity',       'Materials',              'Copper',                          'NYSE',   'Large Cap'),
+
+-- =============================================
+-- FIXED INCOME — 5 tickers
+-- =============================================
+('BND',   'Vanguard Total Bond Market ETF',                          'Fixed Income', 'Bond Fund',              'Total Bond Market',               'NASDAQ', NULL),
+('TLT',   'iShares 20+ Year Treasury Bond ETF',                     'Fixed Income', 'Treasury',               'Long-Term Treasury',              'NASDAQ', NULL),
+('AGG',   'iShares Core U.S. Aggregate Bond ETF',                   'Fixed Income', 'Bond Fund',              'Aggregate Bond',                  'NYSE',   NULL),
+('LQD',   'iShares iBoxx $ Inv Grade Corporate Bond ETF',           'Fixed Income', 'Corporate Bond',         'Investment Grade Corporate',      'NYSE',   NULL),
+('HYG',   'iShares iBoxx $ High Yield Corporate Bond ETF',          'Fixed Income', 'High Yield Bond',        'High Yield Corporate',            'NYSE',   NULL);
+
+
+-- ============================================================
+-- VERIFICATION QUERIES
+-- ============================================================
+
+-- 1. Total count — should return 45
+SELECT COUNT(*) AS total_securities
+FROM HACKATHON.HACKATHON_SCHEMA.security_master;
+
+-- 2. Orphan check — should return ZERO rows
+--    (every ticker in holdings must exist in security_master)
+SELECT DISTINCT h.ticker AS orphan_ticker
+FROM HACKATHON.HACKATHON_SCHEMA.client_position_holdings h
+LEFT JOIN HACKATHON.HACKATHON_SCHEMA.security_master sm
+    ON h.ticker = sm.ticker
+WHERE sm.ticker IS NULL;
+
+-- 3. Breakdown by sector
+SELECT sector_code, COUNT(*) AS cnt
+FROM HACKATHON.HACKATHON_SCHEMA.security_master
+GROUP BY sector_code
+ORDER BY cnt DESC;
+
+-- 4. Breakdown by asset class
+SELECT asset_class, COUNT(*) AS cnt
+FROM HACKATHON.HACKATHON_SCHEMA.security_master
+GROUP BY asset_class
+ORDER BY cnt DESC;
+
+-- 5. View all records
+SELECT *
+FROM HACKATHON.HACKATHON_SCHEMA.security_master
+ORDER BY asset_class, sector_code, ticker;

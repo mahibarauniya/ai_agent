@@ -10,3 +10,21 @@ and if there is risk then we can suggest to client to dilute it to other sector 
 Databaes i am using is snowflake.
 
 
+++++++++++++++++++++++++++++++
+
+now i am working on Portfolio Analysis Engine , please help me generate the plan for all the tables required which will be used to analaze client portfolio. kinldy keep as little as possible as i am working on one POC so need to focus on those working product instead of whole details.
+
+++++++++++++++
+PLEASE REGENERATE THE DML FOR security master table and keeping attached sql file in mind and make sure all the security will be covered which is defined in client_position_holdings in the attached SQL file. security master should have all the columns you defined last time.
+
+Account 5001: JNJ, PFE, JPM, GS, XOM, AMZN, PG, GOOGL, META, CAT, BA, NEE, AMT, LIN, BND, TLT, AAPL, MSFT, NVDA Account 5002: UNH, ABBV, TMO, V, BRK.B, CVX, COP, TSLA, HD, KO, PEP, DIS, NFLX, UPS, HON, DUK, SO, PLD, SPG, APD, FCX, AGG, LQD, HYG, GOOGL, CRM, CAT, HON, O
+
+Unique tickers (37 total): AAPL, ABBV, AGG, AMZN, AMT, APD, BA, BND, BRK.B, CAT, COP, CRM, CVX, DIS, DUK, FCX, GOOGL, GS, HD, HON, HYG, JNJ, JPM, KO, LIN, LQD, META, MSFT, NEE, NFLX, NVDA, O, PEP, PFE, PG, PLD, SO, SPG, TSLA, TLT, TMO, UNH, UPS, V, XOM
+
+ ticker              VARCHAR(10)    NOT NULL,
+    security_name       VARCHAR(200)   NOT NULL,
+    asset_class         VARCHAR(50)    NOT NULL,     -- 'Equity' | 'Fixed Income' | 'REIT' | 'ETF' | 'Mutual Fund'
+    sector_code         VARCHAR(20),                 -- FK → sector_master.sector_code
+    industry            VARCHAR(100),                -- Sub-sector: 'Semiconductors', 'Pharma', etc.
+    exchange            VARCHAR(20),                 -- 'NYSE' | 'NASDAQ' | 'AMEX'
+    market_cap_category VARCHAR(20),       
