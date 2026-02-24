@@ -556,6 +556,186 @@ VALUES
 ('HYG',   'iShares iBoxx $ High Yield Corporate Bond ETF',          'Fixed Income', 'High Yield Bond',        'High Yield Corporate',            'NYSE',   NULL);
 
 
+INSERT INTO HACKATHON.HACKATHON_SCHEMA.security_master
+(ticker, security_name, asset_class, sector_code, industry, exchange, market_cap_category)
+VALUES
+
+-- =============================================
+-- TECHNOLOGY — 10 additional tickers
+-- sector_code = 'Technology', asset_class = 'Equity'
+-- =============================================
+('INTC',  'Intel Corporation',                                       'Equity', 'Technology', 'Semiconductors',                  'NASDAQ', 'Large Cap'),
+('AMD',   'Advanced Micro Devices Inc.',                             'Equity', 'Technology', 'Semiconductors',                  'NASDAQ', 'Large Cap'),
+('ADBE',  'Adobe Inc.',                                              'Equity', 'Technology', 'Software - Infrastructure',       'NASDAQ', 'Mega Cap'),
+('ORCL',  'Oracle Corporation',                                      'Equity', 'Technology', 'Software - Infrastructure',       'NYSE',   'Mega Cap'),
+('CSCO',  'Cisco Systems Inc.',                                      'Equity', 'Technology', 'Communication Equipment',         'NASDAQ', 'Large Cap'),
+('AVGO',  'Broadcom Inc.',                                           'Equity', 'Technology', 'Semiconductors',                  'NASDAQ', 'Mega Cap'),
+('TXN',   'Texas Instruments Incorporated',                          'Equity', 'Technology', 'Semiconductors',                  'NASDAQ', 'Large Cap'),
+('QCOM',  'QUALCOMM Incorporated',                                   'Equity', 'Technology', 'Semiconductors',                  'NASDAQ', 'Large Cap'),
+('NOW',   'ServiceNow Inc.',                                         'Equity', 'Technology', 'Software - Application',          'NYSE',   'Large Cap'),
+('INTU',  'Intuit Inc.',                                              'Equity', 'Technology', 'Software - Application',          'NASDAQ', 'Large Cap'),
+
+-- =============================================
+-- HEALTHCARE — 10 additional tickers
+-- sector_code = 'Healthcare', asset_class = 'Equity'
+-- =============================================
+('LLY',   'Eli Lilly and Company',                                   'Equity', 'Healthcare', 'Drug Manufacturers - General',    'NYSE',   'Mega Cap'),
+('MRK',   'Merck & Co. Inc.',                                        'Equity', 'Healthcare', 'Drug Manufacturers - General',    'NYSE',   'Mega Cap'),
+('BMY',   'Bristol-Myers Squibb Company',                            'Equity', 'Healthcare', 'Drug Manufacturers - General',    'NYSE',   'Large Cap'),
+('AMGN',  'Amgen Inc.',                                              'Equity', 'Healthcare', 'Drug Manufacturers - Specialty',  'NASDAQ', 'Mega Cap'),
+('GILD',  'Gilead Sciences Inc.',                                    'Equity', 'Healthcare', 'Drug Manufacturers - Specialty',  'NASDAQ', 'Large Cap'),
+('ISRG',  'Intuitive Surgical Inc.',                                 'Equity', 'Healthcare', 'Medical Instruments & Supplies',  'NASDAQ', 'Mega Cap'),
+('MDT',   'Medtronic plc',                                           'Equity', 'Healthcare', 'Medical Devices',                 'NYSE',   'Large Cap'),
+('SYK',   'Stryker Corporation',                                     'Equity', 'Healthcare', 'Medical Devices',                 'NYSE',   'Large Cap'),
+('VRTX',  'Vertex Pharmaceuticals Incorporated',                     'Equity', 'Healthcare', 'Biotechnology',                   'NASDAQ', 'Large Cap'),
+('REGN',  'Regeneron Pharmaceuticals Inc.',                          'Equity', 'Healthcare', 'Biotechnology',                   'NASDAQ', 'Large Cap'),
+
+-- =============================================
+-- FINANCIALS — 10 additional tickers
+-- sector_code = 'Financials', asset_class = 'Equity'
+-- =============================================
+('BAC',   'Bank of America Corporation',                             'Equity', 'Financials', 'Banks - Diversified',             'NYSE',   'Mega Cap'),
+('WFC',   'Wells Fargo & Company',                                   'Equity', 'Financials', 'Banks - Diversified',             'NYSE',   'Large Cap'),
+('C',     'Citigroup Inc.',                                          'Equity', 'Financials', 'Banks - Diversified',             'NYSE',   'Large Cap'),
+('MS',    'Morgan Stanley',                                          'Equity', 'Financials', 'Capital Markets',                 'NYSE',   'Large Cap'),
+('SCHW',  'The Charles Schwab Corporation',                          'Equity', 'Financials', 'Capital Markets',                 'NYSE',   'Large Cap'),
+('AXP',   'American Express Company',                                'Equity', 'Financials', 'Credit Services',                 'NYSE',   'Large Cap'),
+('MA',    'Mastercard Incorporated Class A',                         'Equity', 'Financials', 'Credit Services',                 'NYSE',   'Mega Cap'),
+('BLK',   'BlackRock Inc.',                                          'Equity', 'Financials', 'Asset Management',                'NYSE',   'Large Cap'),
+('MMC',   'Marsh & McLennan Companies Inc.',                         'Equity', 'Financials', 'Insurance - Brokers',             'NYSE',   'Large Cap'),
+('PGR',   'The Progressive Corporation',                             'Equity', 'Financials', 'Insurance - Property & Casualty', 'NYSE',   'Large Cap'),
+
+-- =============================================
+-- ENERGY — 7 additional tickers
+-- sector_code = 'Energy', asset_class = 'Equity'
+-- =============================================
+('SLB',   'Schlumberger Limited',                                    'Equity', 'Energy', 'Oil & Gas Equipment & Services',  'NYSE',   'Large Cap'),
+('EOG',   'EOG Resources Inc.',                                      'Equity', 'Energy', 'Oil & Gas E&P',                   'NYSE',   'Large Cap'),
+('MPC',   'Marathon Petroleum Corporation',                          'Equity', 'Energy', 'Oil & Gas Refining & Marketing',  'NYSE',   'Large Cap'),
+('PSX',   'Phillips 66',                                              'Equity', 'Energy', 'Oil & Gas Refining & Marketing',  'NYSE',   'Large Cap'),
+('VLO',   'Valero Energy Corporation',                               'Equity', 'Energy', 'Oil & Gas Refining & Marketing',  'NYSE',   'Large Cap'),
+('OXY',   'Occidental Petroleum Corporation',                        'Equity', 'Energy', 'Oil & Gas E&P',                   'NYSE',   'Large Cap'),
+('HAL',   'Halliburton Company',                                     'Equity', 'Energy', 'Oil & Gas Equipment & Services',  'NYSE',   'Large Cap'),
+
+-- =============================================
+-- CONSUMER DISCRETIONARY — 8 additional tickers
+-- sector_code = 'Consumer Discretionary', asset_class = 'Equity'
+-- =============================================
+('NKE',   'NIKE Inc. Class B',                                       'Equity', 'Consumer Discretionary', 'Footwear & Accessories',          'NYSE',   'Large Cap'),
+('SBUX',  'Starbucks Corporation',                                   'Equity', 'Consumer Discretionary', 'Restaurants',                     'NASDAQ', 'Large Cap'),
+('MCD',   'McDonald''s Corporation',                                 'Equity', 'Consumer Discretionary', 'Restaurants',                     'NYSE',   'Mega Cap'),
+('LOW',   'Lowe''s Companies Inc.',                                  'Equity', 'Consumer Discretionary', 'Home Improvement Retail',         'NYSE',   'Large Cap'),
+('TJX',   'The TJX Companies Inc.',                                  'Equity', 'Consumer Discretionary', 'Apparel Retail',                  'NYSE',   'Large Cap'),
+('BKNG',  'Booking Holdings Inc.',                                   'Equity', 'Consumer Discretionary', 'Travel Services',                 'NASDAQ', 'Mega Cap'),
+('MAR',   'Marriott International Inc. Class A',                     'Equity', 'Consumer Discretionary', 'Lodging',                         'NASDAQ', 'Large Cap'),
+('GM',    'General Motors Company',                                  'Equity', 'Consumer Discretionary', 'Auto Manufacturers',              'NYSE',   'Large Cap'),
+
+-- =============================================
+-- CONSUMER STAPLES — 7 additional tickers
+-- sector_code = 'Consumer Staples', asset_class = 'Equity'
+-- =============================================
+('COST',  'Costco Wholesale Corporation',                            'Equity', 'Consumer Staples', 'Discount Stores',                 'NASDAQ', 'Mega Cap'),
+('WMT',   'Walmart Inc.',                                            'Equity', 'Consumer Staples', 'Discount Stores',                 'NYSE',   'Mega Cap'),
+('PM',    'Philip Morris International Inc.',                        'Equity', 'Consumer Staples', 'Tobacco',                         'NYSE',   'Large Cap'),
+('MO',    'Altria Group Inc.',                                       'Equity', 'Consumer Staples', 'Tobacco',                         'NYSE',   'Large Cap'),
+('CL',    'Colgate-Palmolive Company',                               'Equity', 'Consumer Staples', 'Household & Personal Products',   'NYSE',   'Large Cap'),
+('MDLZ',  'Mondelez International Inc. Class A',                     'Equity', 'Consumer Staples', 'Confectioners',                   'NASDAQ', 'Large Cap'),
+('GIS',   'General Mills Inc.',                                      'Equity', 'Consumer Staples', 'Packaged Foods',                  'NYSE',   'Large Cap'),
+
+-- =============================================
+-- COMMUNICATION SERVICES — 7 additional tickers
+-- sector_code = 'Communication Services', asset_class = 'Equity'
+-- =============================================
+('T',     'AT&T Inc.',                                               'Equity', 'Communication Services', 'Telecom Services',                'NYSE',   'Large Cap'),
+('VZ',    'Verizon Communications Inc.',                             'Equity', 'Communication Services', 'Telecom Services',                'NYSE',   'Large Cap'),
+('TMUS',  'T-Mobile US Inc.',                                        'Equity', 'Communication Services', 'Telecom Services',                'NASDAQ', 'Large Cap'),
+('CMCSA', 'Comcast Corporation Class A',                             'Equity', 'Communication Services', 'Entertainment',                   'NASDAQ', 'Large Cap'),
+('CHTR',  'Charter Communications Inc. Class A',                     'Equity', 'Communication Services', 'Entertainment',                   'NASDAQ', 'Large Cap'),
+('EA',    'Electronic Arts Inc.',                                    'Equity', 'Communication Services', 'Electronic Gaming & Multimedia',  'NASDAQ', 'Large Cap'),
+('WBD',   'Warner Bros. Discovery Inc. Series A',                    'Equity', 'Communication Services', 'Entertainment',                   'NASDAQ', 'Mid Cap'),
+
+-- =============================================
+-- INDUSTRIALS — 8 additional tickers
+-- sector_code = 'Industrials', asset_class = 'Equity'
+-- =============================================
+('GE',    'GE Aerospace',                                            'Equity', 'Industrials', 'Aerospace & Defense',             'NYSE',   'Mega Cap'),
+('RTX',   'RTX Corporation',                                         'Equity', 'Industrials', 'Aerospace & Defense',             'NYSE',   'Large Cap'),
+('LMT',   'Lockheed Martin Corporation',                             'Equity', 'Industrials', 'Aerospace & Defense',             'NYSE',   'Large Cap'),
+('DE',    'Deere & Company',                                         'Equity', 'Industrials', 'Farm & Heavy Construction',       'NYSE',   'Large Cap'),
+('MMM',   'Minnesota Mining and Manufacturing Company',              'Equity', 'Industrials', 'Conglomerates',                   'NYSE',   'Large Cap'),
+('FDX',   'FedEx Corporation',                                       'Equity', 'Industrials', 'Integrated Freight & Logistics',  'NYSE',   'Large Cap'),
+('WM',    'Waste Management Inc.',                                   'Equity', 'Industrials', 'Waste Management',                'NYSE',   'Large Cap'),
+('ETN',   'Eaton Corporation plc',                                   'Equity', 'Industrials', 'Electrical Equipment & Parts',    'NYSE',   'Large Cap'),
+
+-- =============================================
+-- UTILITIES — 7 additional tickers
+-- sector_code = 'Utilities', asset_class = 'Equity'
+-- =============================================
+('AEP',   'American Electric Power Company Inc.',                    'Equity', 'Utilities', 'Utilities - Regulated Electric',  'NASDAQ', 'Large Cap'),
+('D',     'Dominion Energy Inc.',                                    'Equity', 'Utilities', 'Utilities - Regulated Electric',  'NYSE',   'Large Cap'),
+('EXC',   'Exelon Corporation',                                      'Equity', 'Utilities', 'Utilities - Regulated Electric',  'NASDAQ', 'Large Cap'),
+('SRE',   'Sempra',                                                  'Equity', 'Utilities', 'Utilities - Diversified',         'NYSE',   'Large Cap'),
+('XEL',   'Xcel Energy Inc.',                                        'Equity', 'Utilities', 'Utilities - Regulated Electric',  'NASDAQ', 'Large Cap'),
+('ED',    'Consolidated Edison Inc.',                                'Equity', 'Utilities', 'Utilities - Regulated Electric',  'NYSE',   'Large Cap'),
+('WEC',   'WEC Energy Group Inc.',                                   'Equity', 'Utilities', 'Utilities - Regulated Electric',  'NYSE',   'Large Cap'),
+
+-- =============================================
+-- REAL ESTATE — 6 additional tickers
+-- sector_code = 'Real Estate', asset_class = 'REIT'
+-- =============================================
+('EQIX',  'Equinix Inc.',                                            'REIT', 'Real Estate', 'REIT - Specialty',                'NASDAQ', 'Large Cap'),
+('PSA',   'Public Storage',                                          'REIT', 'Real Estate', 'REIT - Industrial',               'NYSE',   'Large Cap'),
+('DLR',   'Digital Realty Trust Inc.',                                'REIT', 'Real Estate', 'REIT - Specialty',                'NYSE',   'Large Cap'),
+('WELL',  'Welltower Inc.',                                          'REIT', 'Real Estate', 'REIT - Healthcare Facilities',    'NYSE',   'Large Cap'),
+('AVB',   'AvalonBay Communities Inc.',                              'REIT', 'Real Estate', 'REIT - Residential',              'NYSE',   'Large Cap'),
+('CCI',   'Crown Castle Inc.',                                       'REIT', 'Real Estate', 'REIT - Specialty',                'NYSE',   'Large Cap'),
+
+-- =============================================
+-- MATERIALS — 7 additional tickers
+-- sector_code = 'Materials', asset_class = 'Equity'
+-- =============================================
+('SHW',   'The Sherwin-Williams Company',                            'Equity', 'Materials', 'Specialty Chemicals',             'NYSE',   'Large Cap'),
+('ECL',   'Ecolab Inc.',                                              'Equity', 'Materials', 'Specialty Chemicals',             'NYSE',   'Large Cap'),
+('NEM',   'Newmont Corporation',                                     'Equity', 'Materials', 'Gold',                            'NYSE',   'Large Cap'),
+('DD',    'DuPont de Nemours Inc.',                                  'Equity', 'Materials', 'Specialty Chemicals',             'NYSE',   'Large Cap'),
+('NUE',   'Nucor Corporation',                                       'Equity', 'Materials', 'Steel',                           'NYSE',   'Large Cap'),
+('DOW',   'Dow Inc.',                                                 'Equity', 'Materials', 'Chemicals',                       'NYSE',   'Large Cap'),
+('PPG',   'PPG Industries Inc.',                                     'Equity', 'Materials', 'Specialty Chemicals',             'NYSE',   'Large Cap'),
+
+-- =============================================
+-- FIXED INCOME — Bond Fund (sector_code = 'Bond Fund')
+-- asset_class = 'Fixed Income'
+-- =============================================
+('BNDX',  'Vanguard Total International Bond ETF',                  'Fixed Income', 'Bond Fund',       'International Bond',              'NASDAQ', NULL),
+('SCHZ',  'Schwab U.S. Aggregate Bond ETF',                         'Fixed Income', 'Bond Fund',       'Aggregate Bond',                  'NYSE',   NULL),
+('BSV',   'Vanguard Short-Term Bond ETF',                            'Fixed Income', 'Bond Fund',       'Short-Term Bond',                 'NASDAQ', NULL),
+
+-- =============================================
+-- FIXED INCOME — Treasury (sector_code = 'Treasury')
+-- asset_class = 'Fixed Income'
+-- =============================================
+('SHY',   'iShares 1-3 Year Treasury Bond ETF',                     'Fixed Income', 'Treasury',        'Short-Term Treasury',             'NASDAQ', NULL),
+('IEF',   'iShares 7-10 Year Treasury Bond ETF',                    'Fixed Income', 'Treasury',        'Intermediate Treasury',           'NASDAQ', NULL),
+('GOVT',  'iShares U.S. Treasury Bond ETF',                         'Fixed Income', 'Treasury',        'Broad Treasury',                  'NYSE',   NULL),
+
+-- =============================================
+-- FIXED INCOME — Corporate Bond (sector_code = 'Corporate Bond')
+-- asset_class = 'Fixed Income'
+-- =============================================
+('VCIT',  'Vanguard Intermediate-Term Corporate Bond ETF',          'Fixed Income', 'Corporate Bond',  'Intermediate Corporate',          'NASDAQ', NULL),
+('VCSH',  'Vanguard Short-Term Corporate Bond ETF',                 'Fixed Income', 'Corporate Bond',  'Short-Term Corporate',            'NASDAQ', NULL),
+('IGIB',  'iShares 5-10 Year Inv Grade Corp Bond ETF',             'Fixed Income', 'Corporate Bond',  'Intermediate Corporate',          'NASDAQ', NULL),
+
+-- =============================================
+-- FIXED INCOME — High Yield Bond (sector_code = 'High Yield Bond')
+-- asset_class = 'Fixed Income'
+-- =============================================
+('JNK',   'SPDR Bloomberg High Yield Bond ETF',                     'Fixed Income', 'High Yield Bond', 'High Yield Corporate',            'NYSE',   NULL),
+('USHY',  'iShares Broad USD High Yield Corp Bond ETF',             'Fixed Income', 'High Yield Bond', 'High Yield Corporate',            'NYSE',   NULL),
+('SHYG',  'iShares 0-5 Year High Yield Corp Bond ETF',             'Fixed Income', 'High Yield Bond', 'Short-Term High Yield',           'NYSE',   NULL);
+
+
+
 -- ============================================================
 -- VERIFICATION QUERIES
 -- ============================================================

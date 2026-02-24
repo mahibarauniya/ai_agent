@@ -28,3 +28,10 @@ Unique tickers (37 total): AAPL, ABBV, AGG, AMZN, AMT, APD, BA, BND, BRK.B, CAT,
     industry            VARCHAR(100),                -- Sub-sector: 'Semiconductors', 'Pharma', etc.
     exchange            VARCHAR(20),                 -- 'NYSE' | 'NASDAQ' | 'AMEX'
     market_cap_category VARCHAR(20),       
+
+++++++++++++++
+
+Looking at your SQL file, I can see the structure clearly. You need additional securities for the security_master table that:
+
+Are not already in client_position_holdings (i.e., not among the 45 existing tickers)
+Follow the same asset_class and sector_code values defined in sector_master
